@@ -3,7 +3,6 @@
 
 int main() {
     printf("Welcome to Solumn !\n");
-    init_board();
-    display_board();
+    start_game();
     return 0;
 }
