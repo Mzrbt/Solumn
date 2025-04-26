@@ -2,7 +2,7 @@
 #include "include/board.h"
 
 void init_board() {
-    printf("Board initialized\n");
+    printf("-----------------------------\n");
 }
 
 void display_board() {

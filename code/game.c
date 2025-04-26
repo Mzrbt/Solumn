@@ -4,7 +4,6 @@
 #include "include/piece.h"
 
 void start_game() {
-    printf("Game starting !\n");
     init_board();
     create_piece();
     display_board();
