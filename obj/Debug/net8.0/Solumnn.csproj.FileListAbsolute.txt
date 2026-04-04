@@ -31,3 +31,4 @@
 /home/mzrbt/Bureau/Solumnn/obj/Debug/net8.0/Solumnn.pdb
 /home/mzrbt/Bureau/Solumnn/obj/Debug/net8.0/Solumnn.genruntimeconfig.cache
 /home/mzrbt/Bureau/Solumnn/obj/Debug/net8.0/ref/Solumnn.dll
+/home/mzrbt/Bureau/Solumnn/obj/Debug/net8.0/Solumnn.sourcelink.json

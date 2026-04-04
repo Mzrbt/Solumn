@@ -12,6 +12,13 @@ public class Game1 : Game
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
+
+        int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+        _graphics.PreferredBackBufferWidth = screenWidth;
+        _graphics.PreferredBackBufferHeight = screenHeight;
+
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -42,7 +49,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
         // TODO: Add your drawing code here
 
