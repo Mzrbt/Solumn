@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Solumnn")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83fadbe4cafde799374b7eb28da27c4760a066f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0975bb952af3afea75a2fc57724fee383b2e7eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Solumnn")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Solumnn")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
