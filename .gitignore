@@ -1,14 +1,13 @@
 # Build outputs
-bin/
-obj/
+bin/*
+obj/*
 
 # Content pipeline outputs
-Content/bin/
-Content/obj/
+Content/bin/*
+Content/obj/*
 
 # IDE
-.vscode/
-.idea/
+.vscode/*
 *.user
 *.suo
 
