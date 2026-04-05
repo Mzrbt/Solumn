@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Solumnn.UI;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Solumnn;
@@ -9,8 +10,10 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-
     private SpriteFont _font;
+
+    private Button _playButton;
+    private Button _exitButton;
 
     public Game1()
     {
@@ -38,6 +41,22 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         _font = Content.Load<SpriteFont>("fonts/solumn");
+
+        _playButton = new Button(
+            new Rectangle(860, 400, 200, 60),
+            "Play",
+            _font,
+            GraphicsDevice
+        );
+        _playButton.OnClick = () => { /* TODO */ };
+
+        _exitButton = new Button(
+            new Rectangle(860, 500, 200, 60),
+            "Exit",
+            _font,
+            GraphicsDevice
+        );
+        _exitButton.OnClick = () => Exit();
     }
 
     protected override void Update(GameTime gameTime)
@@ -45,7 +64,8 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        _playButton.Update();
+        _exitButton.Update();
 
         base.Update(gameTime);
     }
@@ -65,14 +85,8 @@ public class Game1 : Game
             Color.White
         );
 
-        string soustitre = "Jouer";
-        Vector2 tailleSousTitre = _font.MeasureString(soustitre);
-        _spriteBatch.DrawString(
-            _font,
-            soustitre,
-            new Vector2((GraphicsDevice.Viewport.Width - tailleSousTitre.X) / 2, 200),
-            Color.Gray
-        );
+        _playButton.Draw(_spriteBatch);
+        _exitButton.Draw(_spriteBatch);
 
         _spriteBatch.End();
 

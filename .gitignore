@@ -1,16 +1,17 @@
 # Build outputs
-bin/*
-obj/*
+bin/
+obj/
 
 # Content pipeline outputs
-Content/bin/*
-Content/obj/*
+Content/bin/
+Content/obj/
 
 # IDE
-.vscode/*
+.vscode/
 *.user
 *.suo
 
 # OS
 .DS_Store
 Thumbs.db
+.config/
