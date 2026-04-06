@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Solumn.Screens;
 
@@ -8,11 +9,14 @@ namespace Solumn.Managers
     public class ScreenManager
     {
         private Stack<Screen> _screens = new Stack<Screen>();
-        private GraphicsDevice _graphicsDevice;
 
-        public ScreenManager(GraphicsDevice graphicsDevice)
+        public GraphicsDevice GraphicsDevice { get; private set; }
+        public ContentManager Content { get; private set; }
+
+        public ScreenManager(GraphicsDevice graphicsDevice, ContentManager content)
         {
-            _graphicsDevice = graphicsDevice;
+            GraphicsDevice = graphicsDevice;
+            Content = content;
         }
 
         public void Push(Screen screen)
@@ -47,7 +51,5 @@ namespace Solumn.Managers
                 _screens.Peek().Draw(spriteBatch);
             }
         }
-
-        public GraphicsDevice GraphicsDevice => _graphicsDevice;
     }
 }

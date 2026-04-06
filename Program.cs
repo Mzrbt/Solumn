@@ -1,2 +1,2 @@
-﻿using var game = new Solumnn.Game1();
+﻿using var game = new Solumn.Solumn();
 game.Run();
