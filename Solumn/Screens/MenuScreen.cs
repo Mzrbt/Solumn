@@ -20,6 +20,12 @@ namespace Solumn.Screens
 
         public override void LoadContent()
         {
+            int screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
+
+            int buttonWidth = 200;
+            int buttonHeight = 60;
+
             _font = ScreenManager.Content.Load<SpriteFont>("fonts/solumn");
 
             _playButton = new Button(
@@ -33,11 +39,16 @@ namespace Solumn.Screens
             };
 
             _exitButton = new Button(
-                new Rectangle(860, 500, 200, 60),
+                new Rectangle(
+                    (screenWidth - buttonWidth) / 2,
+                    screenHeight - buttonHeight - 50,
+                    buttonWidth,
+                    buttonHeight
+                ),
                 "Exit",
                 _font,
                 ScreenManager.GraphicsDevice
-            );
+            );  
             _exitButton.OnClick = () =>
             {
                 Environment.Exit(0);

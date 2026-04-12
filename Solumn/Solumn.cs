@@ -22,12 +22,16 @@ public class Solumn : Game
         _graphics.PreferredBackBufferWidth = screenWidth;
         _graphics.PreferredBackBufferHeight = screenHeight;
 
+        _graphics.HardwareModeSwitch = false;
+        _graphics.IsFullScreen = true;
+
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
     protected override void Initialize()
     {
+        Window.Position = new Point(0, 0);
         base.Initialize();
     }
 
