@@ -41,7 +41,9 @@ namespace Solumns.Screens
                 _font,
                 ScreenManager.GraphicsDevice
             );
-            _menuButton.OnClick = () => { /* TODO */ };
+            _menuButton.OnClick = () => {
+                ScreenManager.Pop();
+            };
         }
 
         public override void Update(GameTime gameTime)

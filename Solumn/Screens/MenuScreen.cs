@@ -1,7 +1,9 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Solumn.Managers;
 using Solumn.UI;
+using Solumns.Screens;
 
 namespace Solumn.Screens
 {
@@ -26,7 +28,9 @@ namespace Solumn.Screens
                 _font,
                 ScreenManager.GraphicsDevice
             );
-            _playButton.OnClick = () => { /* TODO */ };
+            _playButton.OnClick = () => { 
+                ScreenManager.Push(new PlayScreen(ScreenManager));
+            };
 
             _exitButton = new Button(
                 new Rectangle(860, 500, 200, 60),
@@ -34,7 +38,10 @@ namespace Solumn.Screens
                 _font,
                 ScreenManager.GraphicsDevice
             );
-            _exitButton.OnClick = () => { /* TODO */ };
+            _exitButton.OnClick = () =>
+            {
+                Environment.Exit(0);
+            };
         }
 
         public override void Update(GameTime gameTime)
