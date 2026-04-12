@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Solumn.Game
+namespace Solumn.Core
 {
     public class Grid
     {

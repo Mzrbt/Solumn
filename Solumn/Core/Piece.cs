@@ -1,6 +1,6 @@
 using System;
 
-namespace Solumn.Game
+namespace Solumn.Core
 {
     public class Piece
     {

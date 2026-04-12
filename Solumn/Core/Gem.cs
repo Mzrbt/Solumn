@@ -1,4 +1,4 @@
-namespace Solumn.Game
+namespace Solumn.Core
 {
     public enum GemColor { Red, Blue, Green, Yellow, Purple, Empty }
 
