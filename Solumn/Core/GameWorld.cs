@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Solumn.Core
@@ -10,16 +11,20 @@ namespace Solumn.Core
         private Piece _actievePiece;
         private Piece _nextPiece;
         private KeyboardState _previousKeyboardState;
+        private Texture2D _pixel;
 
         private double _fallTimer;
         private double _fallInterval = 1;
 
-        public GameWorld(Rectangle rectangle)
+        public GameWorld(Rectangle rectangle, GraphicsDevice graphicsDevice)
         {
             _rectangle = rectangle;
             _grid = new Grid(_rectangle);
             _actievePiece = new Piece();
             _nextPiece = new Piece();
+
+            _pixel = new Texture2D(graphicsDevice, 1, 1);
+            _pixel.SetData([Color.White]);
         }
 
         public void Update(GameTime gameTime)
@@ -81,6 +86,45 @@ namespace Solumn.Core
             }
 
             _previousKeyboardState = currentState;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            int cellWidth = _rectangle.Width / Grid.Columns;
+            int cellHeight = _rectangle.Height / Grid.Rows;
+
+            spriteBatch.Draw(_pixel, _rectangle, Color.Black);
+
+            for (int i = 0; i < Grid.Columns; i++)
+            {
+                for (int j = 0; j < Grid.Rows; j++)
+                {
+                    Gem gem = _grid.GetGem(i,j);
+                    Color color = GetGemColor(gem.Color);
+
+                    Rectangle cellRect = new Rectangle(
+                        _rectangle.X + i * cellWidth,
+                        _rectangle.Y + j * cellHeight,
+                        cellWidth - 1,
+                        cellHeight - 1
+                    );
+
+                    spriteBatch.Draw(_pixel, cellRect, color);
+                }
+            }
+        }
+
+        private Color GetGemColor(GemColor gemColor)
+        {
+            return gemColor switch
+            {
+                GemColor.Red    => Color.Red,
+                GemColor.Blue   => Color.Blue,
+                GemColor.Green  => Color.Green,
+                GemColor.Yellow => Color.Yellow,
+                GemColor.Purple => Color.Purple,
+                _               => Color.Black
+            };
         }
     }
 }
