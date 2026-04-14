@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Solumn.Core
 {
@@ -8,6 +9,7 @@ namespace Solumn.Core
         private Grid _grid;
         private Piece _actievePiece;
         private Piece _nextPiece;
+        private KeyboardState _previousKeyboardState;
 
         private double _fallTimer;
         private double _fallInterval = 1;
@@ -45,6 +47,40 @@ namespace Solumn.Core
 
                 _fallTimer = 0;
             }
+
+            KeyboardState currentState = Keyboard.GetState();
+
+            if (currentState.IsKeyDown(Keys.Left) && _previousKeyboardState.IsKeyUp(Keys.Left))
+            {
+                if (_grid.IsInBounds(_actievePiece.XPosition - 1, _actievePiece.YPosition) &&
+                    _grid.IsEmpty(_actievePiece.XPosition - 1, _actievePiece.YPosition))
+                {
+                    _actievePiece.MoveLeft();
+                }
+            }
+            if (currentState.IsKeyDown(Keys.Right) && _previousKeyboardState.IsKeyUp(Keys.Right))
+            {
+                if (_grid.IsInBounds(_actievePiece.XPosition + 1, _actievePiece.YPosition) &&
+                    _grid.IsEmpty(_actievePiece.XPosition + 1, _actievePiece.YPosition))
+                {
+                    _actievePiece.MoveRight();
+                }
+            }
+            if (currentState.IsKeyDown(Keys.Down) && _previousKeyboardState.IsKeyUp(Keys.Down))
+            {
+                bool canGoDown = _grid.IsInBounds(_actievePiece.XPosition, _actievePiece.YPosition + 3) &&
+                                _grid.IsEmpty(_actievePiece.XPosition, _actievePiece.YPosition + 3);
+                if (canGoDown)
+                {
+                    _actievePiece.MoveDown();
+                }
+            }
+            if (currentState.IsKeyDown(Keys.Up) && _previousKeyboardState.IsKeyUp(Keys.Up))
+            {
+                _actievePiece.Rotate();
+            }
+
+            _previousKeyboardState = currentState;
         }
     }
 }
