@@ -8,7 +8,7 @@ namespace Solumn.Core
     {
         private Rectangle _rectangle;
         private Grid _grid;
-        private Piece _actievePiece;
+        private Piece _activePiece;
         private Piece _nextPiece;
         private KeyboardState _previousKeyboardState;
         private Texture2D _pixel;
@@ -20,7 +20,7 @@ namespace Solumn.Core
         {
             _rectangle = rectangle;
             _grid = new Grid(_rectangle);
-            _actievePiece = new Piece();
+            _activePiece = new Piece();
             _nextPiece = new Piece();
 
             _pixel = new Texture2D(graphicsDevice, 1, 1);
@@ -33,20 +33,20 @@ namespace Solumn.Core
 
             if (_fallTimer >= _fallInterval)
             {
-                bool canGoDown = _grid.IsInBounds(_actievePiece.XPosition, _actievePiece.YPosition + 3) && 
-                                     _grid.IsEmpty(_actievePiece.XPosition, _actievePiece.YPosition + 3);
+                bool canGoDown = _grid.IsInBounds(_activePiece.XPosition, _activePiece.YPosition + 3) && 
+                                     _grid.IsEmpty(_activePiece.XPosition, _activePiece.YPosition + 3);
 
                 if (canGoDown)
                 {
-                    _actievePiece.MoveDown();
+                    _activePiece.MoveDown();
                 }
                 else
                 {
                     for (int i = 0; i < 3; i++)
                     {
-                        _grid.SetGem(_actievePiece.XPosition, _actievePiece.YPosition + i, _actievePiece.GetGem(i));
+                        _grid.SetGem(_activePiece.XPosition, _activePiece.YPosition + i, _activePiece.GetGem(i));
                     }
-                    _actievePiece = _nextPiece;
+                    _activePiece = _nextPiece;
                     _nextPiece = new Piece();
                 }
 
@@ -57,32 +57,32 @@ namespace Solumn.Core
 
             if (currentState.IsKeyDown(Keys.Left) && _previousKeyboardState.IsKeyUp(Keys.Left))
             {
-                if (_grid.IsInBounds(_actievePiece.XPosition - 1, _actievePiece.YPosition) &&
-                    _grid.IsEmpty(_actievePiece.XPosition - 1, _actievePiece.YPosition))
+                if (_grid.IsInBounds(_activePiece.XPosition - 1, _activePiece.YPosition) &&
+                    _grid.IsEmpty(_activePiece.XPosition - 1, _activePiece.YPosition))
                 {
-                    _actievePiece.MoveLeft();
+                    _activePiece.MoveLeft();
                 }
             }
             if (currentState.IsKeyDown(Keys.Right) && _previousKeyboardState.IsKeyUp(Keys.Right))
             {
-                if (_grid.IsInBounds(_actievePiece.XPosition + 1, _actievePiece.YPosition) &&
-                    _grid.IsEmpty(_actievePiece.XPosition + 1, _actievePiece.YPosition))
+                if (_grid.IsInBounds(_activePiece.XPosition + 1, _activePiece.YPosition) &&
+                    _grid.IsEmpty(_activePiece.XPosition + 1, _activePiece.YPosition))
                 {
-                    _actievePiece.MoveRight();
+                    _activePiece.MoveRight();
                 }
             }
             if (currentState.IsKeyDown(Keys.Down) && _previousKeyboardState.IsKeyUp(Keys.Down))
             {
-                bool canGoDown = _grid.IsInBounds(_actievePiece.XPosition, _actievePiece.YPosition + 3) &&
-                                _grid.IsEmpty(_actievePiece.XPosition, _actievePiece.YPosition + 3);
+                bool canGoDown = _grid.IsInBounds(_activePiece.XPosition, _activePiece.YPosition + 3) &&
+                                _grid.IsEmpty(_activePiece.XPosition, _activePiece.YPosition + 3);
                 if (canGoDown)
                 {
-                    _actievePiece.MoveDown();
+                    _activePiece.MoveDown();
                 }
             }
             if (currentState.IsKeyDown(Keys.Up) && _previousKeyboardState.IsKeyUp(Keys.Up))
             {
-                _actievePiece.Rotate();
+                _activePiece.Rotate();
             }
 
             _previousKeyboardState = currentState;
@@ -111,6 +111,21 @@ namespace Solumn.Core
 
                     spriteBatch.Draw(_pixel, cellRect, color);
                 }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Gem gem = _grid.GetGem(_activePiece.XPosition, _activePiece.YPosition + i);
+                Color color = GetGemColor(gem.Color);
+
+                Rectangle cellRect = new Rectangle(
+                    _rectangle.X + i * cellWidth,
+                    _rectangle.Y * cellHeight,
+                    cellWidth - 1,
+                    cellHeight - 1
+                );
+
+                spriteBatch.Draw(_pixel, cellRect, color);
             }
         }
 
