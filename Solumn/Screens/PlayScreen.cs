@@ -1,14 +1,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Solumn.Core;
 using Solumn.Managers;
-using Solumn.Screens;
 using Solumn.UI;
 
-namespace Solumns.Screens 
+namespace Solumn.Screens 
 {
     public class PlayScreen : Screen
     {
         private SpriteFont _font;
+        private GameWorld _gameWorld;
 
         private Button _menuButton;
 
@@ -19,15 +20,7 @@ namespace Solumns.Screens
         
         public override void Draw(SpriteBatch spriteBatch)
         {
-            string titre = "Solumn";
-            Vector2 tailletitre = _font.MeasureString(titre);
-            spriteBatch.DrawString(
-                _font,
-                titre,
-                new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - tailletitre.X) / 2, 100),
-                Color.White
-            );
-
+            _gameWorld.Draw(spriteBatch);
             _menuButton.Draw(spriteBatch);
         }
 
@@ -35,8 +28,17 @@ namespace Solumns.Screens
         {
             _font = ScreenManager.Content.Load<SpriteFont>("fonts/solumn");
 
+            Rectangle gameRect = new Rectangle(
+                100,
+                100,
+                ScreenManager.GraphicsDevice.Viewport.Width / 2,
+                ScreenManager.GraphicsDevice.Viewport.Height - 200
+            );
+
+            _gameWorld = new GameWorld(gameRect, ScreenManager.GraphicsDevice);
+
             _menuButton = new Button(
-                new Rectangle(860, 500, 200, 60),
+                new Rectangle((int)(ScreenManager.GraphicsDevice.Viewport.Width / 1.5), ScreenManager.GraphicsDevice.Viewport.Height / 2, 200, 60),
                 "Menu",
                 _font,
                 ScreenManager.GraphicsDevice
@@ -48,6 +50,7 @@ namespace Solumns.Screens
 
         public override void Update(GameTime gameTime)
         {
+            _gameWorld.Update(gameTime);
             _menuButton.Update();
         }
     }

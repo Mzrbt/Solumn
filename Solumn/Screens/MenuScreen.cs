@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Solumn.Managers;
 using Solumn.UI;
-using Solumns.Screens;
 
 namespace Solumn.Screens
 {
