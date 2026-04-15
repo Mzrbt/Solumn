@@ -115,12 +115,12 @@ namespace Solumn.Core
 
             for (int i = 0; i < 3; i++)
             {
-                Gem gem = _grid.GetGem(_activePiece.XPosition, _activePiece.YPosition + i);
+                Gem gem = _activePiece.GetGem(i);
                 Color color = GetGemColor(gem.Color);
 
                 Rectangle cellRect = new Rectangle(
-                    _rectangle.X + i * cellWidth,
-                    _rectangle.Y * cellHeight,
+                    _rectangle.X + _activePiece.XPosition * cellWidth,
+                    _rectangle.Y + (_activePiece.YPosition + i) * cellHeight,
                     cellWidth - 1,
                     cellHeight - 1
                 );
