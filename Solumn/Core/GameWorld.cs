@@ -46,6 +46,7 @@ namespace Solumn.Core
                     {
                         _grid.SetGem(_activePiece.XPosition, _activePiece.YPosition + i, _activePiece.GetGem(i));
                     }
+                    _grid.DetectAndClear();
                     _activePiece = _nextPiece;
                     _nextPiece = new Piece();
                 }

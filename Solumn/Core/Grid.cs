@@ -42,5 +42,56 @@ namespace Solumn.Core
         {
             return x >= 0 && x < Columns && y >= 0 && y < Rows;
         }
+
+        public bool DetectAndClear()
+        {
+            bool[,] toRemove = new bool[Columns, Rows];
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    if (_cells[x, y].Color != GemColor.Empty)
+                    {
+                        if (x <= Columns - 3 && _cells[x, y].Color == _cells[x + 1, y].Color && _cells[x, y].Color == _cells[x + 2, y].Color)
+                        {
+                            toRemove[x, y] = true;
+                            toRemove[x + 1, y] = true;
+                            toRemove[x + 2, y] = true;
+                        }
+                        if (y <= Rows - 3 && _cells[x, y].Color == _cells[x, y + 1].Color && _cells[x, y].Color == _cells[x, y + 2].Color)
+                        {
+                            toRemove[x, y] = true;
+                            toRemove[x, y + 1] = true;
+                            toRemove[x, y + 2] = true;
+                        }
+                        if (x <= Columns - 3 && y <= Rows - 3 && _cells[x, y].Color == _cells[x + 1, y + 1].Color && _cells[x, y].Color == _cells[x + 2, y + 2].Color)
+                        {
+                            toRemove[x, y] = true;
+                            toRemove[x + 1, y + 1] = true;
+                            toRemove[x + 2, y + 2] = true;
+                        }
+                        if (x >= 2 && y <= Rows - 3 && _cells[x, y].Color == _cells[x - 1, y + 1].Color && _cells[x, y].Color == _cells[x - 2, y + 2].Color)
+                        {
+                            toRemove[x, y] = true;
+                            toRemove[x - 1, y + 1] = true;
+                            toRemove[x - 2, y + 2] = true;
+                        }
+                    }
+                }
+            }
+            bool removed = false;
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    if (toRemove[x, y])
+                    {
+                        _cells[x, y] = new Gem(GemColor.Empty);
+                        removed = true;
+                    }
+                }
+            }
+            return removed;
+        }
     }
 }
