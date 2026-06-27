@@ -93,5 +93,27 @@ namespace Solumn.Core
             }
             return removed;
         }
+
+        public void ApplyGravity()
+        {
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = Rows - 1; y > 0; y--)
+                {
+                    if (_cells[x, y].Color == GemColor.Empty)
+                    {
+                        for (int k = y - 1; k >= 0; k--)
+                        {
+                            if (_cells[x, k].Color != GemColor.Empty)
+                            {
+                                _cells[x, y] = _cells[x, k];
+                                _cells[x, k] = new Gem(GemColor.Empty);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
