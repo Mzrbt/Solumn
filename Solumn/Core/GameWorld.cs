@@ -12,6 +12,7 @@ namespace Solumn.Core
         private Piece _nextPiece;
         private KeyboardState _previousKeyboardState;
         private Texture2D _pixel;
+        public bool IsGameOver { get; private set; } = false;
 
         private double _fallTimer;
         private double _fallInterval = 1;
@@ -55,6 +56,10 @@ namespace Solumn.Core
                     } while (removed);
                     _activePiece = _nextPiece;
                     _nextPiece = new Piece();
+                    if (!_grid.IsEmpty(_activePiece.XPosition, _activePiece.YPosition))
+                    {
+                        IsGameOver = true;
+                    }
                 }
 
                 _fallTimer = 0;

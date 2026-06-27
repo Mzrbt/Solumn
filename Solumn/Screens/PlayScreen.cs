@@ -52,6 +52,11 @@ namespace Solumn.Screens
         {
             _gameWorld.Update(gameTime);
             _menuButton.Update();
+
+            if (_gameWorld.IsGameOver)
+            {
+                ScreenManager.Push(new GameOverScreen(ScreenManager));
+            }
         }
     }
 }
