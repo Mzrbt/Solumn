@@ -18,10 +18,12 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Install MGCB tool
+    - name: Install MonoGame CLI tool
       run: |
-        dotnet tool install --global dotnet-mgcb --version 3.8.4.1
+        dotnet tool install --global dotnet-mgcb-editor-linux --version 3.8.4.1 || dotnet tool update --global dotnet-mgcb-editor-linux --version 3.8.4.1
         echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+        dotnet tool list --global
+        dotnet mgcb --help
 
     - name: Restore dependencies
       run: dotnet restore
