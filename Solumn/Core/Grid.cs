@@ -43,7 +43,7 @@ namespace Solumn.Core
             return x >= 0 && x < Columns && y >= 0 && y < Rows;
         }
 
-        public bool DetectAndClear()
+        public int DetectAndClear()
         {
             bool[,] toRemove = new bool[Columns, Rows];
             for (int x = 0; x < Columns; x++)
@@ -79,7 +79,7 @@ namespace Solumn.Core
                     }
                 }
             }
-            bool removed = false;
+            int count = 0;
             for (int x = 0; x < Columns; x++)
             {
                 for (int y = 0; y < Rows; y++)
@@ -87,11 +87,11 @@ namespace Solumn.Core
                     if (toRemove[x, y])
                     {
                         _cells[x, y] = new Gem(GemColor.Empty);
-                        removed = true;
+                        count++;
                     }
                 }
             }
-            return removed;
+            return count;
         }
 
         public void ApplyGravity()

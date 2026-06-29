@@ -22,6 +22,12 @@ namespace Solumn.Screens
         {
             _gameWorld.Draw(spriteBatch);
             _menuButton.Draw(spriteBatch);
+            spriteBatch.DrawString(
+                _font,
+                "Score : " + _gameWorld.Score,
+                new Vector2(50, 50),
+                Color.White
+            );
         }
 
         public override void LoadContent()

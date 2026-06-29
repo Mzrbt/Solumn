@@ -12,10 +12,12 @@ namespace Solumn.Core
         private Piece _nextPiece;
         private KeyboardState _previousKeyboardState;
         private Texture2D _pixel;
-        public bool IsGameOver { get; private set; } = false;
 
         private double _fallTimer;
         private double _fallInterval = 1;
+
+        public bool IsGameOver { get; private set; } = false;
+        public int Score { get; private set; } = 0;
 
         public GameWorld(Rectangle rectangle, GraphicsDevice graphicsDevice)
         {
@@ -47,13 +49,18 @@ namespace Solumn.Core
                     {
                         _grid.SetGem(_activePiece.XPosition, _activePiece.YPosition + i, _activePiece.GetGem(i));
                     }
-                    bool removed;
+                    int cascadeMultiplier = 1;
+                    int removed;
                     do
                     {
                         removed = _grid.DetectAndClear();
-                        if (removed)
+                        if (removed > 0)
+                        {
+                            Score += removed * 3 * cascadeMultiplier;
+                            cascadeMultiplier++;
                             _grid.ApplyGravity();
-                    } while (removed);
+                        }
+                    } while (removed > 0);
                     _activePiece = _nextPiece;
                     _nextPiece = new Piece();
                     if (!_grid.IsEmpty(_activePiece.XPosition, _activePiece.YPosition))
