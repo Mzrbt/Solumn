@@ -14,9 +14,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Install MGCB
-      run: |
-        dotnet tool install --global dotnet-mgcb --version 3.8.4.1
-        echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+      run: dotnet tool restore
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
