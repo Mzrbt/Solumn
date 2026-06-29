@@ -146,6 +146,21 @@ namespace Solumn.Core
 
                 spriteBatch.Draw(_pixel, cellRect, color);
             }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Gem gem = _nextPiece.GetGem(i);
+                Color color = GetGemColor(gem.Color);
+
+                Rectangle cellRect = new Rectangle(
+                    _rectangle.X + _rectangle.Width + 20,
+                    _rectangle.Y + (_rectangle.Height / 2 - 1) + i * cellHeight,
+                    cellWidth - 1,
+                    cellHeight - 1
+                );
+
+                spriteBatch.Draw(_pixel, cellRect, color);
+            }
         }
 
         private Color GetGemColor(GemColor gemColor)
