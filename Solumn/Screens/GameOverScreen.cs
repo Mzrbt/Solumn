@@ -10,9 +10,11 @@ namespace Solumn.Screens
         private SpriteFont _font;
         private Button _exitButton;
 
-        public GameOverScreen(ScreenManager screenManager) : base(screenManager)
+        private int _finalScore;
+
+        public GameOverScreen(ScreenManager screenManager, int score) : base(screenManager)
         {
-            
+            _finalScore = score;
         }
 
         public override void LoadContent()
@@ -56,6 +58,13 @@ namespace Solumn.Screens
                 _font,
                 titre,
                 new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - tailletitre.X) / 2, 100),
+                Color.White
+            );
+
+            spriteBatch.DrawString(
+                _font,
+                "Score : " + _finalScore,
+                new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - _font.MeasureString("Score : " + _finalScore).X) / 2, 150),
                 Color.White
             );
 
