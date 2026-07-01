@@ -76,16 +76,34 @@ namespace Solumn.Core
 
             if (currentState.IsKeyDown(Keys.Left) && _previousKeyboardState.IsKeyUp(Keys.Left))
             {
-                if (_grid.IsInBounds(_activePiece.XPosition - 1, _activePiece.YPosition) &&
-                    _grid.IsEmpty(_activePiece.XPosition - 1, _activePiece.YPosition))
+                bool canGoLeft = true;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!_grid.IsInBounds(_activePiece.XPosition - 1, _activePiece.YPosition + i) ||
+                        !_grid.IsEmpty(_activePiece.XPosition - 1, _activePiece.YPosition + i))
+                    {
+                        canGoLeft = false;
+                        break;
+                    }
+                }
+                if (canGoLeft)
                 {
                     _activePiece.MoveLeft();
                 }
             }
             if (currentState.IsKeyDown(Keys.Right) && _previousKeyboardState.IsKeyUp(Keys.Right))
             {
-                if (_grid.IsInBounds(_activePiece.XPosition + 1, _activePiece.YPosition) &&
-                    _grid.IsEmpty(_activePiece.XPosition + 1, _activePiece.YPosition))
+                bool canGoRight = true;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!_grid.IsInBounds(_activePiece.XPosition + 1, _activePiece.YPosition + i) ||
+                        !_grid.IsEmpty(_activePiece.XPosition + 1, _activePiece.YPosition + i))
+                    {
+                        canGoRight = false;
+                        break;
+                    }
+                }
+                if (canGoRight)
                 {
                     _activePiece.MoveRight();
                 }
