@@ -20,7 +20,7 @@ namespace Solumn.Screens
         
         public override void Draw(SpriteBatch spriteBatch)
         {
-            _gameWorld.Draw(spriteBatch);
+            _gameWorld.Draw(spriteBatch, _font);
             _menuButton.Draw(spriteBatch);
             spriteBatch.DrawString(
                 _font,

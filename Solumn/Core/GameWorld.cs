@@ -107,7 +107,7 @@ namespace Solumn.Core
             _previousKeyboardState = currentState;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             int cellWidth = _rectangle.Width / Grid.Columns;
             int cellHeight = _rectangle.Height / Grid.Rows;
@@ -146,6 +146,13 @@ namespace Solumn.Core
 
                 spriteBatch.Draw(_pixel, cellRect, color);
             }
+
+            spriteBatch.DrawString(
+                font,
+                "Next",
+                new Vector2(_rectangle.X + _rectangle.Width + 20, _rectangle.Y + (_rectangle.Height / 2 - 1) - 30),
+                Color.White
+            );
 
             for (int i = 0; i < 3; i++)
             {
