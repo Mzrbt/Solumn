@@ -11,10 +11,12 @@ namespace Solumn.Screens
         private Button _exitButton;
 
         private int _finalScore;
+        private int _finalLevel;
 
-        public GameOverScreen(ScreenManager screenManager, int score) : base(screenManager)
+        public GameOverScreen(ScreenManager screenManager, int score, int level) : base(screenManager)
         {
             _finalScore = score;
+            _finalLevel = level;
         }
 
         public override void LoadContent()
@@ -68,6 +70,13 @@ namespace Solumn.Screens
                 Color.White
             );
 
+            spriteBatch.DrawString(
+                _font,
+                "Level : " + _finalLevel,
+                new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - _font.MeasureString("Level : " + _finalLevel).X) / 2, 200),
+                Color.White
+            );  
+            
             _exitButton.Draw(spriteBatch);
         }
     }

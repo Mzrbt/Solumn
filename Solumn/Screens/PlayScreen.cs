@@ -67,7 +67,7 @@ namespace Solumn.Screens
 
             if (_gameWorld.IsGameOver)
             {
-                ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score));
+                ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score, _gameWorld.Level));
             }
         }
     }
