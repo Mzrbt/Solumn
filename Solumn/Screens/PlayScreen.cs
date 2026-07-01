@@ -28,6 +28,12 @@ namespace Solumn.Screens
                 new Vector2(50, 50),
                 Color.White
             );
+            spriteBatch.DrawString(
+                _font,
+                "Level : " + _gameWorld.Level,
+                new Vector2(50, 80),
+                Color.White
+            );
         }
 
         public override void LoadContent()

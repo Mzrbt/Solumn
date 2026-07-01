@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,6 +19,7 @@ namespace Solumn.Core
 
         public bool IsGameOver { get; private set; } = false;
         public int Score { get; private set; } = 0;
+        public int Level { get; private set; } = 1;
 
         public GameWorld(Rectangle rectangle, GraphicsDevice graphicsDevice)
         {
@@ -57,6 +59,8 @@ namespace Solumn.Core
                         if (removed > 0)
                         {
                             Score += removed * 3 * cascadeMultiplier;
+                            Level = (Score / 100) + 1;
+                            _fallInterval = Math.Max(0.1, 1.0 - (Level - 1) * 0.1);
                             cascadeMultiplier++;
                             _grid.ApplyGravity();
                         }
