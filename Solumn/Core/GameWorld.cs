@@ -99,6 +99,14 @@ namespace Solumn.Core
                     _activePiece.MoveDown();
                 }
             }
+            if (currentState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
+            {
+                while (_grid.IsInBounds(_activePiece.XPosition, _activePiece.YPosition + 3) &&
+                       _grid.IsEmpty(_activePiece.XPosition, _activePiece.YPosition + 3))
+                {
+                    _activePiece.MoveDown();
+                }
+            }
             if (currentState.IsKeyDown(Keys.Up) && _previousKeyboardState.IsKeyUp(Keys.Up))
             {
                 _activePiece.Rotate();
