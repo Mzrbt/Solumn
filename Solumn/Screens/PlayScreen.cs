@@ -69,6 +69,11 @@ namespace Solumn.Screens
             {
                 ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score, _gameWorld.Level));
             }
+
+            if (currentState.IsKeyDown(Keys.Escape) && _previousKeyboardState.IsKeyUp(Keys.Escape))
+            {
+                ScreenManager.Push(new PauseScreen(ScreenManager));
+            }
         }
     }
 }
