@@ -14,6 +14,7 @@ namespace Solumn.Screens
 
         private Button _menuButton;
         private KeyboardState _previousKeyboardState;
+        private bool _gameOverHandled = false;
 
         public PlayScreen(ScreenManager screenManager) : base(screenManager)
         {
@@ -67,8 +68,9 @@ namespace Solumn.Screens
             _gameWorld.Update(gameTime);
             _menuButton.Update();
 
-            if (_gameWorld.IsGameOver)
+            if (_gameWorld.IsGameOver && !_gameOverHandled)
             {
+                _gameOverHandled = true;
                 ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score, _gameWorld.Level));
             }
 

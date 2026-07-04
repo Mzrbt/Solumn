@@ -12,7 +12,6 @@ namespace Solumn.Screens
         private Button _exitButton;
         private Button _menuButton;
     
-
         private GameWorld _gameWorld;
 
         public PauseScreen(ScreenManager screenManager, GameWorld gameWorld) : base(screenManager)
