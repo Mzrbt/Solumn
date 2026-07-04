@@ -162,6 +162,26 @@ namespace Solumn.Core
                 }
             }
 
+            int ghostY = _activePiece.YPosition;
+            while (_grid.IsInBounds(_activePiece.XPosition, ghostY + 3) &&
+                _grid.IsEmpty(_activePiece.XPosition, ghostY + 3))
+            {
+                ghostY++;
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Gem gem = _activePiece.GetGem(i);
+                Color color = GetGemColor(gem.Color) * 0.3f;
+                Rectangle cellRect = new Rectangle(
+                    _rectangle.X + _activePiece.XPosition * cellWidth,
+                    _rectangle.Y + (ghostY + i) * cellHeight,  // ghostY ici !
+                    cellWidth - 1,
+                    cellHeight - 1
+                );
+                spriteBatch.Draw(_pixel, cellRect, color);
+            }
+
             for (int i = 0; i < 3; i++)
             {
                 Gem gem = _activePiece.GetGem(i);
