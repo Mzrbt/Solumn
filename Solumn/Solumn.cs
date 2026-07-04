@@ -44,12 +44,7 @@ public class Solumn : Game
     }
 
     protected override void Update(GameTime gameTime)
-    {
-        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-        {
-            Exit();
-        }
-            
+    {            
         _screenManager.Update(gameTime);
 
         base.Update(gameTime);

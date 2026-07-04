@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Solumn.Core;
 using Solumn.Managers;
 using Solumn.UI;
@@ -12,6 +13,7 @@ namespace Solumn.Screens
         private GameWorld _gameWorld;
 
         private Button _menuButton;
+        private KeyboardState _previousKeyboardState;
 
         public PlayScreen(ScreenManager screenManager) : base(screenManager)
         {
@@ -70,10 +72,14 @@ namespace Solumn.Screens
                 ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score, _gameWorld.Level));
             }
 
+            KeyboardState currentState = Keyboard.GetState();
+
             if (currentState.IsKeyDown(Keys.Escape) && _previousKeyboardState.IsKeyUp(Keys.Escape))
             {
-                ScreenManager.Push(new PauseScreen(ScreenManager));
+                ScreenManager.Push(new PauseScreen(ScreenManager, _gameWorld));
             }
+
+            _previousKeyboardState = currentState;
         }
     }
 }
