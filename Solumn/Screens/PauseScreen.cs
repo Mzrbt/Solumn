@@ -10,6 +10,8 @@ namespace Solumn.Screens
     {
         private SpriteFont _font;
         private Button _exitButton;
+        private Button _menuButton;
+    
 
         private GameWorld _gameWorld;
 
@@ -43,11 +45,22 @@ namespace Solumn.Screens
             {
                 ScreenManager.Pop();
             };
+
+            _menuButton = new Button(
+                new Rectangle((int)(ScreenManager.GraphicsDevice.Viewport.Width / 1.5), ScreenManager.GraphicsDevice.Viewport.Height / 2, 200, 60),
+                "Menu",
+                _font,
+                ScreenManager.GraphicsDevice
+            );
+            _menuButton.OnClick = () => {
+                ScreenManager.Pop();
+            };
         }
 
         public override void Update(GameTime gameTime)
         {
             _exitButton.Update();
+            _menuButton.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -76,6 +89,7 @@ namespace Solumn.Screens
             );  
             
             _exitButton.Draw(spriteBatch);
+            _menuButton.Draw(spriteBatch);
         }
     }
 }
