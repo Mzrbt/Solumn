@@ -30,7 +30,10 @@ namespace Solumn.Core
 
         public void SetGem(int x, int y, Gem gem)
         {
-            _cells[x,y] = gem;
+            if (IsInBounds(x, y))
+            {
+                _cells[x,y] = gem;
+            }
         }
 
         public bool IsEmpty(int x, int y)

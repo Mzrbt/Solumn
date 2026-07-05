@@ -65,7 +65,11 @@ namespace Solumn.Screens
 
         public override void Update(GameTime gameTime)
         {
+            if (!_gameWorld.IsGameOver)
+            {
             _gameWorld.Update(gameTime);
+            }
+            
             _menuButton.Update();
 
             if (_gameWorld.IsGameOver && !_gameOverHandled)
