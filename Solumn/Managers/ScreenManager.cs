@@ -12,11 +12,13 @@ namespace Solumn.Managers
 
         public GraphicsDevice GraphicsDevice { get; private set; }
         public ContentManager Content { get; private set; }
+        public ScoreManager ScoreManager { get; private set; } = new ScoreManager();
 
         public ScreenManager(GraphicsDevice graphicsDevice, ContentManager content)
         {
             GraphicsDevice = graphicsDevice;
             Content = content;
+            ScoreManager.LoadScore();
         }
 
         public void Push(Screen screen)

@@ -33,6 +33,12 @@ namespace Solumn.Screens
             );
             spriteBatch.DrawString(
                 _font,
+                "Best : " + ScreenManager.ScoreManager.Score,
+                new Vector2(50, 110),
+                Color.White
+            );
+            spriteBatch.DrawString(
+                _font,
                 "Level : " + _gameWorld.Level,
                 new Vector2(50, 80),
                 Color.White
@@ -75,6 +81,7 @@ namespace Solumn.Screens
             if (_gameWorld.IsGameOver && !_gameOverHandled)
             {
                 _gameOverHandled = true;
+                ScreenManager.ScoreManager.SaveScore(_gameWorld.Score);
                 ScreenManager.Push(new GameOverScreen(ScreenManager, _gameWorld.Score, _gameWorld.Level));
             }
 

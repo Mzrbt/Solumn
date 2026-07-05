@@ -96,6 +96,13 @@ namespace Solumn.Screens
                 new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - _font.MeasureString("Level : " + _finalLevel).X) / 2, 200),
                 Color.White
             );  
+
+            spriteBatch.DrawString(
+                _font,
+                "Best : " + ScreenManager.ScoreManager.Score,
+                new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - _font.MeasureString("Best : " + ScreenManager.ScoreManager.Score).X) / 2, 250),
+                Color.White
+            );
             
             _exitButton.Draw(spriteBatch);
             _restartButton.Draw(spriteBatch);
