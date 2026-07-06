@@ -87,7 +87,7 @@ namespace Solumn.Screens
 
             KeyboardState currentState = Keyboard.GetState();
 
-            if (currentState.IsKeyDown(Keys.Escape) && _previousKeyboardState.IsKeyUp(Keys.Escape))
+            if (currentState.IsKeyDown(Keys.Escape) && _previousKeyboardState.IsKeyUp(Keys.Escape) && !_gameWorld.IsGameOver)
             {
                 ScreenManager.Push(new PauseScreen(ScreenManager, _gameWorld));
             }
