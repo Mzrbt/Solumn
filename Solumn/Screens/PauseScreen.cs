@@ -11,6 +11,7 @@ namespace Solumn.Screens
         private SpriteFont _font;
         private Button _exitButton;
         private Button _menuButton;
+        private Button _restartButton;
     
         private GameWorld _gameWorld;
 
@@ -54,12 +55,31 @@ namespace Solumn.Screens
             _menuButton.OnClick = () => {
                 ScreenManager.Pop();
             };
+
+            _restartButton = new Button(
+                new Rectangle(
+                    (screenWidth - buttonWidth) / 2,
+                    screenHeight - buttonHeight * 2 - 70,
+                    buttonWidth,
+                    buttonHeight
+                ),
+                "Restart",
+                _font,
+                ScreenManager.GraphicsDevice
+            );
+            _restartButton.OnClick = () =>
+            {
+                ScreenManager.Pop();
+                ScreenManager.Pop();
+                ScreenManager.Push(new PlayScreen(ScreenManager));
+            };
         }
 
         public override void Update(GameTime gameTime)
         {
             _exitButton.Update();
             _menuButton.Update();
+            _restartButton.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -89,6 +109,7 @@ namespace Solumn.Screens
             
             _exitButton.Draw(spriteBatch);
             _menuButton.Draw(spriteBatch);
+            _restartButton.Draw(spriteBatch);
         }
     }
 }
